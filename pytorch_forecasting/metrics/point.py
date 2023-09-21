@@ -77,6 +77,9 @@ class MAPE(MultiHorizonMetric):
     Defined as ``(y - y_pred).abs() / y.abs()``
     """
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def loss(self, y_pred, target):
         loss = (self.to_prediction(y_pred) - target).abs() / (target.abs() + 1e-8)
         return loss
@@ -88,6 +91,8 @@ class MAE(MultiHorizonMetric):
 
     Defined as ``(y_pred - target).abs()``
     """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def loss(self, y_pred, target):
         loss = (self.to_prediction(y_pred) - target).abs()
@@ -156,6 +161,8 @@ class MASE(MultiHorizonMetric):
     Defined as ``(y_pred - target).abs() / all_targets[:, :-1] - all_targets[:, 1:]).mean(1)``.
     ``all_targets`` are here the concatenated encoder and decoder targets
     """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def update(
         self,
