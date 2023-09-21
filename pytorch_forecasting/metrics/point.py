@@ -63,6 +63,8 @@ class SMAPE(MultiHorizonMetric):
 
     Defined as ``2*(y - y_pred).abs() / (y.abs() + y_pred.abs())``
     """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def loss(self, y_pred, target):
         y_pred = self.to_prediction(y_pred)
