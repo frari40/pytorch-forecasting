@@ -31,6 +31,9 @@ class PoissonLoss(MultiHorizonMetric):
     The result is the model prediction.
     """
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def loss(self, y_pred: Dict[str, torch.Tensor], target: torch.Tensor) -> torch.Tensor:
         return F.poisson_nll_loss(
             super().to_prediction(y_pred), target, log_input=True, full=False, eps=1e-6, reduction="none"
