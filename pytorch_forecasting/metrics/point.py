@@ -105,6 +105,8 @@ class CrossEntropy(MultiHorizonMetric):
     """
     Cross entropy loss for classification.
     """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def loss(self, y_pred, target):
         loss = F.cross_entropy(y_pred.view(-1, y_pred.size(-1)), target.view(-1), reduction="none").view(

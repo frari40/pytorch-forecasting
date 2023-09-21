@@ -19,6 +19,9 @@ class NormalDistributionLoss(DistributionLoss):
     distribution_class = distributions.Normal
     distribution_arguments = ["loc", "scale"]
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def map_x_to_distribution(self, x: torch.Tensor) -> distributions.Normal:
         distr = self.distribution_class(loc=x[..., 2], scale=x[..., 3])
         scaler = distributions.AffineTransform(loc=x[..., 0], scale=x[..., 1])
@@ -125,6 +128,9 @@ class NegativeBinomialDistributionLoss(DistributionLoss):
     distribution_class = distributions.NegativeBinomial
     distribution_arguments = ["mean", "shape"]
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def map_x_to_distribution(self, x: torch.Tensor) -> distributions.NegativeBinomial:
         mean = x[..., 0]
         shape = x[..., 1]
@@ -174,6 +180,9 @@ class LogNormalDistributionLoss(DistributionLoss):
     distribution_class = distributions.LogNormal
     distribution_arguments = ["loc", "scale"]
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
     def map_x_to_distribution(self, x: torch.Tensor) -> distributions.LogNormal:
         return self.distribution_class(loc=x[..., 0], scale=x[..., 1])
 
@@ -204,6 +213,9 @@ class BetaDistributionLoss(DistributionLoss):
     distribution_class = distributions.Beta
     distribution_arguments = ["mean", "shape"]
     eps = 1e-4
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def map_x_to_distribution(self, x: torch.Tensor) -> distributions.Beta:
         mean = x[..., 0]

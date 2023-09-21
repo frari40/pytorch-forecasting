@@ -998,6 +998,8 @@ class MultivariateDistributionLoss(DistributionLoss):
     is predicted in one go and the batch dimension is not independent, but the time dimension still
     remains independent.
     """
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def sample(self, y_pred, n_samples: int) -> torch.Tensor:
         """
