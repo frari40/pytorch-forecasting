@@ -24,7 +24,7 @@ class QuantileLoss(MultiHorizonMetric):
         Args:
             quantiles: quantiles for metric
         """
-        super().__init__(quantiles=quantiles, **kwargs)
+        super().__init__(**kwargs)
 
     def loss(self, y_pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
         # calculate quantile loss
